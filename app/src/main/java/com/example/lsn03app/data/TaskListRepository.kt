@@ -1,21 +1,22 @@
 package com.example.lsn03app.data
 
-import com.example.lsn03app.data.room.TaskListDao
-import com.example.lsn03app.data.room.TaskListEntity
+import com.example.lsn03app.data.room.dao.TaskListDao
+import com.example.lsn03app.data.room.entity.TaskListEntity
 import com.example.lsn03app.domain.IRepository
 import com.example.lsn03app.domain.models.TaskList
 
 class TaskListRepository(private val taskListDao: TaskListDao):IRepository {
+	private val mapper = Mapper()
 	override suspend fun addTaskList(taskList: TaskList) {
-		taskListDao.addTaskList(taskListToTaskListEntity(taskList))
+		taskListDao.addTaskList(mapper.taskListToTaskListEntity(taskList))
 	}
 
 	override suspend fun deleteTaskList(taskList: TaskList) {
-		taskListDao.deleteTaskList(taskListToTaskListEntity(taskList))
+		taskListDao.deleteTaskList(mapper.taskListToTaskListEntity(taskList))
 	}
 
 	override suspend fun updateTaskList(taskList: TaskList) {
-		taskListDao.updateTaskList(taskListToTaskListEntity(taskList))
+		taskListDao.updateTaskList(mapper.taskListToTaskListEntity(taskList))
 	}
 
 	override suspend fun getAllTaskLists(): List<TaskList> {
@@ -24,7 +25,5 @@ class TaskListRepository(private val taskListDao: TaskListDao):IRepository {
 		}
 	}
 
-	private fun taskListToTaskListEntity(taskList: TaskList) : TaskListEntity {
-		return TaskListEntity(taskList.id, taskList.name)
-	}
+
 }

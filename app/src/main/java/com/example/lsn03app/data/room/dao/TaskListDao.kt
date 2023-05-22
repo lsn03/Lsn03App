@@ -1,6 +1,7 @@
-package com.example.lsn03app.data.room
+package com.example.lsn03app.data.room.dao
 
 import androidx.room.*
+import com.example.lsn03app.data.room.entity.TaskListEntity
 
 @Dao
 abstract class TaskListDao {

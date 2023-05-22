@@ -3,6 +3,7 @@ package com.example.lsn03app.di
 import android.content.Context
 import androidx.room.Room
 import com.example.lsn03app.data.TaskListRepository
+import com.example.lsn03app.data.TaskRepository
 import com.example.lsn03app.data.room.MyDb
 
 object Dependencies {
@@ -18,5 +19,8 @@ object Dependencies {
 	}
 	val taskListRepository by lazy {
 		TaskListRepository(db.taskListDao())
+	}
+	val taskRepository by lazy {
+		TaskRepository(db.taskDao())
 	}
 }
