@@ -4,9 +4,21 @@ import com.example.lsn03app.data.room.dao.TaskDao
 import com.example.lsn03app.domain.ITaskRepository
 import com.example.lsn03app.domain.models.Task
 import com.example.lsn03app.domain.models.TaskList
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class TaskRepository(private val taskDao: TaskDao) :ITaskRepository {
 	private val mapper = Mapper()
+//	init {
+//		for (i in 0..10){
+//			GlobalScope.launch {
+//				addTask(Task("NAME: $i","Text",i+1))
+//				addTask(Task("NAMfddffdE_2: $i","Textfdfddf_2",i+1))
+//			}
+//		}
+//
+//
+//	}
 	override suspend fun addTask(task: Task) {
 		taskDao.addTask(mapper.taskToTaskEntity(task))
 	}
@@ -15,8 +27,8 @@ class TaskRepository(private val taskDao: TaskDao) :ITaskRepository {
 		taskDao.deleteTask(mapper.taskToTaskEntity(task))
 	}
 
-	override suspend fun getTasksFromTaskList(taskList: TaskList): List<Task> {
-		return taskDao.getTasksFromTaskList(taskList.id).map {
+	override suspend fun getTasksFromTaskList(id: Int): List<Task> {
+		return taskDao.getTasksFromTaskList(id).map {
 			mapper.taskEntityToTask(it)
 		}
 	}

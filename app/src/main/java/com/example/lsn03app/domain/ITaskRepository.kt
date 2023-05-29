@@ -6,5 +6,5 @@ import com.example.lsn03app.domain.models.TaskList
 interface ITaskRepository {
 	suspend fun addTask(task:Task)
 	suspend fun deleteTask(task:Task)
-	suspend fun getTasksFromTaskList(taskList: TaskList) : List<Task>
+	suspend fun getTasksFromTaskList(id: Int) : List<Task>
 }
