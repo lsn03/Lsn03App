@@ -12,9 +12,9 @@ import com.example.lsn03app.domain.usecase.GetAllTaskListUseCase
 class TaskListViewModel:ViewModel() {
 	val list = MutableLiveData<List<Task>>()
 	private val taskRepository = Dependencies.taskRepository
-	fun getTasksFromTaskList(id: Int) {
+	fun getTasksFromTaskList(taskListId: Int) {
 		viewModelScope.launch {
-			list.postValue(taskRepository.getTasksFromTaskList(id))
+			list.postValue(taskRepository.getTasksFromTaskList(taskListId))
 		}
 	}
 }

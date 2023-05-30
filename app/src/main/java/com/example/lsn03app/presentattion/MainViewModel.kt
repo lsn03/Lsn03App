@@ -20,6 +20,7 @@ class MainViewModel:ViewModel() {
 	private val addTaskListUseCase = AddTaskListUseCase(taskListRepository)
 	private val getAllTaskListUseCase = GetAllTaskListUseCase(taskListRepository)
 	private val deleteTaskUseCase = DeleteTaskUseCase(taskListRepository)
+
 	fun addTaskList(name:String){
 		viewModelScope.launch {
 			addTaskListUseCase.execute(name);
