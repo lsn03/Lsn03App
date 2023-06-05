@@ -10,4 +10,5 @@ data class TaskEntity (
 	val name:String,
 	val description :String,
 	val taskListId:Int,
+	val isFavourite:Boolean
 )

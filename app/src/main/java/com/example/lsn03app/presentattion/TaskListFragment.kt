@@ -18,7 +18,7 @@ import com.example.lsn03app.databinding.FragmentTaskListBinding
 class TaskListFragment(private val taskListId:Int) : Fragment() {
 	private lateinit var viewModel: TaskListViewModel
 	private lateinit var binding: FragmentTaskListBinding
-
+	private lateinit var mainViewModel: MainViewModel
 
 
 	override fun onCreateView(
@@ -27,6 +27,7 @@ class TaskListFragment(private val taskListId:Int) : Fragment() {
 	): View {
 		binding = FragmentTaskListBinding.inflate(layoutInflater)
 		viewModel = ViewModelProvider(this)[TaskListViewModel::class.java]
+		mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 		return binding.root
 	}
 
@@ -52,7 +53,11 @@ class TaskListFragment(private val taskListId:Int) : Fragment() {
 			}
 
 			override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-				TODO("Not yet implemented")
+				if(direction<0){
+					val list = viewModel.getTasksFromTaskList(taskListId)
+
+					//mainViewModel.deleleteTaskFromTaskList(list[viewHolder.adapterPosition])
+				}
 			}
 		}
 

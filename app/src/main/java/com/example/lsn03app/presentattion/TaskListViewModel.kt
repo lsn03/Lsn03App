@@ -17,4 +17,9 @@ class TaskListViewModel:ViewModel() {
 			list.postValue(taskRepository.getTasksFromTaskList(taskListId))
 		}
 	}
+	fun getFavouriteTasks() {
+		viewModelScope.launch {
+			list.postValue(taskRepository.getFavouriteTasks())
+		}
+	}
 }

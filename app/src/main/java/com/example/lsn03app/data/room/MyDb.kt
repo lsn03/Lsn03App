@@ -8,7 +8,7 @@ import com.example.lsn03app.data.room.entity.TaskEntity
 import com.example.lsn03app.data.room.entity.TaskListEntity
 
 
-@Database(entities = [TaskListEntity::class,TaskEntity::class],version = 1)
+@Database(entities = [TaskListEntity::class,TaskEntity::class],version = 2)
 abstract class MyDb : RoomDatabase() {
 	abstract fun taskListDao(): TaskListDao
 	abstract fun taskDao(): TaskDao

@@ -1,13 +1,10 @@
 package com.example.lsn03app.data
 
 import com.example.lsn03app.data.room.dao.TaskListDao
-import com.example.lsn03app.data.room.entity.TaskListEntity
-import com.example.lsn03app.domain.IRepository
+import com.example.lsn03app.domain.ITaskListRepository
 import com.example.lsn03app.domain.models.TaskList
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
-class TaskListRepository(private val taskListDao: TaskListDao):IRepository {
+class TaskListRepository(private val taskListDao: TaskListDao):ITaskListRepository {
 	private val mapper = Mapper()
 
 //	init {
@@ -28,14 +25,34 @@ class TaskListRepository(private val taskListDao: TaskListDao):IRepository {
 		taskListDao.deleteTaskList(mapper.taskListToTaskListEntity(taskList))
 	}
 
+	override suspend fun deleteTaskList(taskListId: Int) {
+		val taskListEntity = taskListDao.getTaskListEntity(taskListId)
+		taskListDao.deleteTaskList(taskListEntity)
+
+	}
+
 	override suspend fun updateTaskList(taskList: TaskList) {
 		taskListDao.updateTaskList(mapper.taskListToTaskListEntity(taskList))
 	}
 
+	override suspend fun updateTaskList(taskListId: Int) {
+		val taskListEntity = taskListDao.getTaskListEntity(taskListId)
+		taskListDao.updateTaskList(taskListEntity)
+	}
+
 	override suspend fun getAllTaskLists(): List<TaskList> {
-		return taskListDao.getTaskList().map {
-			TaskList(it.name, it.id)
+		return taskListDao.getTaskListsEntity().map {
+			TaskList(it.name,it.isFavourite, it.id)
 		}
+	}
+
+	override suspend fun getTaskList(taskListId: Int): TaskList {
+		val taskListEntity = taskListDao.getTaskListEntity(taskListId)
+		return taskListEntity?.let {
+			mapper.taskListEntityToTaskList(it)
+
+
+		}!!
 	}
 
 

@@ -15,5 +15,8 @@ abstract class TaskListDao {
 	abstract suspend fun updateTaskList(taskListEntity: TaskListEntity)
 
 	@Query("SELECT * FROM taskList")
-	abstract suspend fun getTaskList():List<TaskListEntity>
+	abstract suspend fun getTaskListsEntity():List<TaskListEntity>
+
+	@Query("SELECT * FROM taskList WHERE id = :taskListId")
+	abstract suspend fun getTaskListEntity(taskListId:Int):TaskListEntity
 }

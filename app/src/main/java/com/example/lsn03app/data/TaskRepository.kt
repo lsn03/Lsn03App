@@ -19,6 +19,7 @@ class TaskRepository(private val taskDao: TaskDao) :ITaskRepository {
 //
 //
 //	}
+
 	override suspend fun addTask(task: Task) {
 		taskDao.addTask(mapper.taskToTaskEntity(task))
 	}
@@ -32,5 +33,21 @@ class TaskRepository(private val taskDao: TaskDao) :ITaskRepository {
 			mapper.taskEntityToTask(it)
 		}
 	}
+
+	override suspend fun addTaskToFavouriteTaskList(task: Task) {
+		taskDao.addTaskToFavouriteTaskList(mapper.taskToTaskEntity(task).id)
+
+	}
+
+	override suspend fun removeTaskFromFavouriteTaskList(task: Task) {
+		taskDao.removeTaskFromFavouriteTaskList(mapper.taskToTaskEntity(task).id)
+	}
+
+	override suspend fun getFavouriteTasks(): List<Task> {
+		return taskDao.getFavouriteTasks().map {
+			mapper.taskEntityToTask(it)
+		}
+	}
+
 
 }
