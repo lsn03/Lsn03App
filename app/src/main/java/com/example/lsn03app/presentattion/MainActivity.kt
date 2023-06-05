@@ -29,13 +29,7 @@ class MainActivity : AppCompatActivity() {
 		vmTaskList = TaskListViewModel()
 		Dependencies.taskRepository
 
-		if (tabIndex == 0){
 
-		// если мы на фаворите то таски не можем добавлять
-			//
-		}else{
-
-		}
 
 		vm.taskLists.observe(this){
 			vpAdapter = ViewPagerAdapter(this, it)
@@ -66,6 +60,13 @@ class MainActivity : AppCompatActivity() {
 		binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener{
 			override fun onTabSelected(tab: TabLayout.Tab?) {
 				tabIndex = tab!!.position
+				if (tabIndex == 0){
+					binding.addTaskInTaskListButton.visibility = View.INVISIBLE
+					// если мы на фаворите то таски не можем добавлять
+					//
+				}else{
+					binding.addTaskInTaskListButton.visibility = View.VISIBLE
+				}
 			}
 
 			override fun onTabUnselected(tab: TabLayout.Tab?) {
