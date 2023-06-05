@@ -10,7 +10,6 @@ import com.example.lsn03app.di.Dependencies
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
-import java.io.Console
 
 class MainActivity : AppCompatActivity() {
 

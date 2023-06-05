@@ -19,6 +19,9 @@ abstract class TaskDao {
 	@Query("UPDATE task set isFavourite = true where id = :taskId")
 	abstract suspend fun addTaskToFavouriteTaskList(taskId: Int)
 
+	@Update
+	abstract suspend fun updateTask(taskEntity: TaskEntity)
+
 	@Query("UPDATE task set isFavourite = false where id = :taskId")
 	abstract suspend fun removeTaskFromFavouriteTaskList(taskId: Int)
 }

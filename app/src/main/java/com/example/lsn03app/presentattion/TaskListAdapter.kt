@@ -1,6 +1,7 @@
 package com.example.lsn03app.presentattion
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,10 +45,12 @@ class TaskListAdapter : ListAdapter<Task, TaskListAdapter.MyViewHolder>(MyDiffUt
 		holder.name.text = task.name
 
 		holder.itemView.setOnClickListener {
-			openTaskDetails(task,position)
+			val context = holder.itemView.context
+			val intent = TaskActivity.getIntent(context,task)
+			context.startActivity(intent)
 		}
 	}
-	private fun openTaskDetails(task: Task,taskListId:Int) {
+	private fun openTaskDetails(task: Task) {
 
 
 	}

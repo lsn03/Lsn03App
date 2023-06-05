@@ -49,5 +49,9 @@ class TaskRepository(private val taskDao: TaskDao) :ITaskRepository {
 		}
 	}
 
+	override suspend fun updateTask(task: Task) {
+		taskDao.updateTask(mapper.taskToTaskEntity(task))
+	}
+
 
 }

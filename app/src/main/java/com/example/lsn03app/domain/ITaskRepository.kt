@@ -10,4 +10,5 @@ interface ITaskRepository {
 	suspend fun addTaskToFavouriteTaskList(task: Task)
 	suspend fun removeTaskFromFavouriteTaskList(task: Task)
 	suspend fun getFavouriteTasks() : List<Task>
+	suspend fun updateTask(task: Task)
 }
