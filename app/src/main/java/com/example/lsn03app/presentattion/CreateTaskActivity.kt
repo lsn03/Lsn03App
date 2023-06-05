@@ -11,10 +11,9 @@ import com.example.lsn03app.di.Dependencies
 import com.example.lsn03app.domain.models.Task
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlin.properties.Delegates
 import kotlin.Int as Int
 
-class TaskActivity : AppCompatActivity() {
+class CreateTaskActivity : AppCompatActivity() {
 
 	lateinit var binding: ActivityTaskBinding
 	private lateinit var mode: String
@@ -33,29 +32,16 @@ class TaskActivity : AppCompatActivity() {
 
 		mode = intent.getStringExtra(ARG_TASK_MODE).toString()
 
-		if (mode == "EDIT") {
-			// Если в режиме редактирования, то кнопка добавления скрыта
-			binding.add.visibility = View.INVISIBLE
-			binding.deleteTask.visibility= View.VISIBLE
-			binding.save.visibility = View.VISIBLE
-			binding.save.text = getString(R.string.save)
-
-			// taskId = intent.getIntExtra("taskId", 0)
-
-			binding.title.text = taskName
-			binding.desc.text = taskDesc
 
 
-			binding.isFavouriteTask.text = taskIsFavourite.toString()
 
-		} else if (mode == "CREATE"){
 			// Если в режиме редактирования, то кнопка сохранения скрыта
 			binding.add.visibility = View.VISIBLE
 			binding.deleteTask.visibility= View.INVISIBLE
 			binding.save.visibility = View.INVISIBLE
 
 			binding.add.text = getString(R.string.add)
-		}
+
 
 		setContentView(binding.root)
 		binding.add.setOnClickListener {
@@ -100,13 +86,13 @@ class TaskActivity : AppCompatActivity() {
 
 
 		fun getIntent(context: Context, taskListId: Int) : Intent{
-			val intent = Intent(context, TaskActivity::class.java)
+			val intent = Intent(context, CreateTaskActivity::class.java)
 			intent.putExtra(ARG_TASK_LIST_ID, taskListId)
 			intent.putExtra(ARG_TASK_MODE, "CREATE")
 			return intent
 		}
 		fun getIntent(context: Context,task:Task) : Intent{
-			val intent = Intent(context, TaskActivity::class.java)
+			val intent = Intent(context, CreateTaskActivity::class.java)
 			intent.putExtra(ARG_TASK_ID,task.id)
 			intent.putExtra(ARG_TASK_NAME,task.id)
 			intent.putExtra(ARG_TASK_DESCRIPTION,task.id)
