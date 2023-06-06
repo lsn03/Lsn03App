@@ -41,7 +41,7 @@ class TaskListAdapter : ListAdapter<Task, TaskListAdapter.MyViewHolder>(MyDiffUt
 
 		holder.itemView.setOnClickListener {
 			val context = holder.itemView.context
-			val intent = CreateTaskActivity.getIntent(context,task)
+			val intent = TaskActivity.getIntent(context,task)
 			context.startActivity(intent)
 		}
 	}

@@ -40,12 +40,13 @@ class MainViewModel:ViewModel() {
 			taskLists.postValue(getAllTaskListUseCase.execute())
 		}
 	}
-	fun removeTaskList(taskList: TaskList){
+	fun removeTaskList(taskListId: Int){
 		viewModelScope.launch {
-			deleteTaskListUseCase.execute(taskList)
+			deleteTaskListUseCase.execute(taskListId)
 		}
+		getAllTaskList()
 	}
-	fun deleleteTaskFromTaskList(task:Task){
+	fun removeTaskFromTaskList(task:Task){
 		viewModelScope.launch {
 			deleteTaskUseCase.execute(task)
 		}

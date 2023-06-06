@@ -49,12 +49,16 @@ class MainActivity : AppCompatActivity() {
 		binding.addTaskInTaskListButton.setOnClickListener {
 			startActivity(
 				vm.taskLists.value?.get(tabIndex)?.let {
-						it1 -> CreateTaskActivity.getIntent(this, it1.id)
+						it1 -> TaskActivity.getIntent(this, it1.id)
 				}
 			)
 		}
 
-
+		binding.removeTaskListButton.setOnClickListener {
+			val taskListId = vm.taskLists.value?.get(tabIndex)?.id
+			vm.taskLists.value?.toMutableList()?.removeAt(tabIndex)
+			taskListId?.let { it1 -> vm.removeTaskList(it1) }
+		}
 		vm.getAllTaskList()
 
 		binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener{

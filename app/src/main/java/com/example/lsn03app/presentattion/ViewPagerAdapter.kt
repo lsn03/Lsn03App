@@ -14,4 +14,5 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity,private val taskList:L
 	override fun createFragment(position: Int): Fragment {
 		return TaskListFragment(taskList[position].id)
 	}
+
 }
