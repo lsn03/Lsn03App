@@ -1,14 +1,9 @@
 package com.example.lsn03app.presentattion
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -46,7 +41,7 @@ class TaskListAdapter : ListAdapter<Task, TaskListAdapter.MyViewHolder>(MyDiffUt
 
 		holder.itemView.setOnClickListener {
 			val context = holder.itemView.context
-			val intent = TaskActivity.getIntent(context,task)
+			val intent = CreateTaskActivity.getIntent(context,task)
 			context.startActivity(intent)
 		}
 	}
