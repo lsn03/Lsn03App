@@ -22,4 +22,5 @@ class TaskListViewModel:ViewModel() {
 			list.postValue(taskRepository.getFavouriteTasks())
 		}
 	}
+
 }

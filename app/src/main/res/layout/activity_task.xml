@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/title"
+            android:id="@+id/taskName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/title" />
@@ -25,18 +25,22 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/desc"
+            android:id="@+id/taskDesc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/desc" />
+            android:layout_height="match_parent"
+            android:hint="@string/desc"
+            android:text="" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <RadioButton
+
+
+    <CheckBox
         android:id="@+id/isFavouriteTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:text="@string/isFavourite" />
+        android:text="@string/isFavourite"
+
+        />
 
     <Button
         android:id="@+id/add"

@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import com.example.lsn03app.R
 import com.example.lsn03app.databinding.ActivityTaskBinding
 import com.example.lsn03app.di.Dependencies
@@ -40,13 +41,15 @@ class TaskActivity : AppCompatActivity() {
 			binding.save.visibility = View.VISIBLE
 			binding.save.text = getString(R.string.save)
 
+
+
 			// taskId = intent.getIntExtra("taskId", 0)
 
-			binding.title.text = taskName
-			binding.desc.text = taskDesc
+			binding.taskName.setText(taskName)
+			binding.taskDesc.setText(taskDesc)
 
 
-			binding.isFavouriteTask.text = taskIsFavourite.toString()
+			binding.isFavouriteTask.isChecked = taskIsFavourite
 
 		} else if (mode == "CREATE"){
 			// Если в режиме редактирования, то кнопка сохранения скрыта
@@ -59,28 +62,32 @@ class TaskActivity : AppCompatActivity() {
 
 		setContentView(binding.root)
 		binding.add.setOnClickListener {
-			val title = binding.title.text.toString()
-			val desc = binding.desc.text.toString()
+			val title = binding.taskName.text.toString()
+			val desc = binding.taskDesc.text.toString()
+			val isChecked = binding.isFavouriteTask.isChecked
 			if (desc.isNotEmpty() && title.isNotEmpty()) {
 				GlobalScope.launch {
-					Dependencies.taskRepository.addTask(Task(title, desc, taskListID))
+					Dependencies.taskRepository.addTask(Task(title, desc,taskListID, isChecked,))
 				}
 				finish()
 			}
 		}
 		binding.save.setOnClickListener {
-			val title = binding.title.text.toString()
-			val desc = binding.desc.text.toString()
+			val title = binding.taskName.text.toString()
+			val desc = binding.taskDesc.text.toString()
+			val isChecked = binding.isFavouriteTask.isChecked
 			if (desc.isNotEmpty() && title.isNotEmpty()) {
 				GlobalScope.launch {
-					Dependencies.taskRepository.updateTask(Task(title, desc,taskID, taskListID))
+					Dependencies.taskRepository.updateTask(
+						Task(title, desc, taskListID,isChecked,taskID)
+					)
 				}
 				finish()
 			}
 		}
 		binding.deleteTask.setOnClickListener {
 			GlobalScope.launch {
-				Dependencies.taskRepository.deleteTask(Task(taskName, taskDesc,taskID, taskListID))
+				Dependencies.taskRepository.deleteTask(Task(taskName, taskDesc, taskListID, taskIsFavourite, taskID))
 			}
 			finish()
 
@@ -108,10 +115,10 @@ class TaskActivity : AppCompatActivity() {
 		fun getIntent(context: Context,task:Task) : Intent{
 			val intent = Intent(context, TaskActivity::class.java)
 			intent.putExtra(ARG_TASK_ID,task.id)
-			intent.putExtra(ARG_TASK_NAME,task.id)
-			intent.putExtra(ARG_TASK_DESCRIPTION,task.id)
-			intent.putExtra(ARG_TASK_IS_FAVOURITE,task.id)
-
+			intent.putExtra(ARG_TASK_NAME,task.name)
+			intent.putExtra(ARG_TASK_DESCRIPTION,task.description)
+			intent.putExtra(ARG_TASK_IS_FAVOURITE,task.isFavourite)
+			intent.putExtra(ARG_TASK_LIST_ID, task.taskListId)
 			intent.putExtra(ARG_TASK_MODE, "EDIT")
 
 			return intent

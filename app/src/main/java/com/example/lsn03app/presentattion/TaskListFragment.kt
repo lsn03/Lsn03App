@@ -53,17 +53,17 @@ class TaskListFragment(private val taskListId:Int) : Fragment() {
 			}
 
 			override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-				if(direction<0){
-					val list = viewModel.getTasksFromTaskList(taskListId)
 
-					//mainViewModel.deleleteTaskFromTaskList(list[viewHolder.adapterPosition])
-				}
 			}
 		}
 
 		val itemTouchHelper = ItemTouchHelper(callback).attachToRecyclerView(binding.rv)
+		if(taskListId == 1){
+			viewModel.getFavouriteTasks()
+		}else{
+			viewModel.getTasksFromTaskList(taskListId)
+		}
 
-		viewModel.getTasksFromTaskList(taskListId)
 	}
 
 

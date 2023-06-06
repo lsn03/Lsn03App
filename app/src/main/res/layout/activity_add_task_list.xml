@@ -22,11 +22,14 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <RadioButton
+
+
+    <CheckBox
         android:id="@+id/isFavouriteTaskList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/isFavourite" />
+        android:visibility="gone"
+        android:text="@string/isFavourite"/>
 
     <Button
         android:id="@+id/save"

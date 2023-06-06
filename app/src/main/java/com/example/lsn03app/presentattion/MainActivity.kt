@@ -7,6 +7,7 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.example.lsn03app.databinding.ActivityMainBinding
 import com.example.lsn03app.di.Dependencies
+import com.example.lsn03app.domain.models.TaskList
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
@@ -61,10 +62,12 @@ class MainActivity : AppCompatActivity() {
 				tabIndex = tab!!.position
 				if (tabIndex == 0){
 					binding.addTaskInTaskListButton.visibility = View.INVISIBLE
+					binding.removeTaskListButton.visibility = View.INVISIBLE
 					// если мы на фаворите то таски не можем добавлять
 					//
 				}else{
 					binding.addTaskInTaskListButton.visibility = View.VISIBLE
+					binding.removeTaskListButton.visibility = View.VISIBLE
 				}
 			}
 

@@ -15,7 +15,10 @@ object Dependencies {
 	}
 
 	private val db by lazy {
-		Room.databaseBuilder(context,MyDb::class.java,"task.db").fallbackToDestructiveMigration().build()
+		Room.databaseBuilder(context,MyDb::class.java,"task.db")
+			.fallbackToDestructiveMigration()
+			.createFromAsset("database/task_db.db")
+			.build()
 	}
 	val taskListRepository by lazy {
 		TaskListRepository(db.taskListDao())

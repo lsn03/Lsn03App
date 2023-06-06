@@ -14,14 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lsn03App"
         tools:targetApi="31" >
-        <activity
-            android:name=".ViewTaskActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".ViewTaskActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".presentattion.AddTaskListActivity"
             android:exported="false" />
         <activity
-            android:name=".presentattion.CreateTaskActivity"
+            android:name=".presentattion.TaskActivity"
             android:exported="false" />
         <activity
             android:name=".presentattion.MainActivity"

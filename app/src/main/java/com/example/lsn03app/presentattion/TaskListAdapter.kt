@@ -50,8 +50,5 @@ class TaskListAdapter : ListAdapter<Task, TaskListAdapter.MyViewHolder>(MyDiffUt
 			context.startActivity(intent)
 		}
 	}
-	private fun openTaskDetails(task: Task) {
 
-
-	}
 }

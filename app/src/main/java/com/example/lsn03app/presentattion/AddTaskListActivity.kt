@@ -22,7 +22,7 @@ class AddTaskListActivity : AppCompatActivity() {
 
 		binding.add.setOnClickListener {
 			val name = binding.name.text.toString()
-			val isFavourite = binding.isFavouriteTaskList.text.toString().toBoolean()
+			val isFavourite = binding.isFavouriteTaskList.isChecked
 
 			GlobalScope.launch {
 				Dependencies.taskListRepository.addTaskList(TaskList(name,isFavourite ))
