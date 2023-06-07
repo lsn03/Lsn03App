@@ -58,6 +58,8 @@ class MainActivity : AppCompatActivity() {
 			val taskListId = vm.taskLists.value?.get(tabIndex)?.id
 			vm.taskLists.value?.toMutableList()?.removeAt(tabIndex)
 			taskListId?.let { it1 -> vm.removeTaskList(it1) }
+
+
 		}
 		vm.getAllTaskList()
 

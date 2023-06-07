@@ -25,14 +25,7 @@ class MainViewModel:ViewModel() {
 	fun addTaskList(name:String){
 		viewModelScope.launch {
 			addTaskListUseCase.execute(name);
-		}
-		getAllTaskList()
-
-	}
-	fun getFavouriteTaskList(){
-		viewModelScope.launch {
-			val tasks = getFavouriteTasksUseCase.execute()
-
+			getAllTaskList()
 		}
 	}
 	fun getAllTaskList(){
@@ -43,12 +36,9 @@ class MainViewModel:ViewModel() {
 	fun removeTaskList(taskListId: Int){
 		viewModelScope.launch {
 			deleteTaskListUseCase.execute(taskListId)
+			getAllTaskList()
 		}
-		getAllTaskList()
+
 	}
-	fun removeTaskFromTaskList(task:Task){
-		viewModelScope.launch {
-			deleteTaskUseCase.execute(task)
-		}
-	}
+
 }
