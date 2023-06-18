@@ -1,11 +1,9 @@
-package com.example.lsn03app.data
+package com.example.lsn03app.data.repositoryImpl
 
+import com.example.lsn03app.data.Mapper
 import com.example.lsn03app.data.room.dao.TaskDao
 import com.example.lsn03app.domain.ITaskRepository
 import com.example.lsn03app.domain.models.Task
-import com.example.lsn03app.domain.models.TaskList
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class TaskRepository(private val taskDao: TaskDao) :ITaskRepository {
 	private val mapper = Mapper()

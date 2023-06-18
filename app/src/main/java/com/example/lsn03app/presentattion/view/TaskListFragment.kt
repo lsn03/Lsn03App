@@ -1,4 +1,4 @@
-package com.example.lsn03app.presentattion
+package com.example.lsn03app.presentattion.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.lsn03app.databinding.FragmentTaskListBinding
-
-
+import com.example.lsn03app.presentattion.viewModel.MainViewModel
+import com.example.lsn03app.presentattion.adapter.TaskListAdapter
+import com.example.lsn03app.presentattion.viewModel.TaskViewModel
 
 
 class TaskListFragment(private val taskListId:Int) : Fragment() {
-	private lateinit var viewModel: TaskListViewModel
+	private lateinit var viewModel: TaskViewModel
 	private lateinit var binding: FragmentTaskListBinding
 	private lateinit var mainViewModel: MainViewModel
 
@@ -26,7 +27,7 @@ class TaskListFragment(private val taskListId:Int) : Fragment() {
 		savedInstanceState: Bundle?
 	): View {
 		binding = FragmentTaskListBinding.inflate(layoutInflater)
-		viewModel = ViewModelProvider(this)[TaskListViewModel::class.java]
+		viewModel = ViewModelProvider(this)[TaskViewModel::class.java]
 		mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 		return binding.root
 	}

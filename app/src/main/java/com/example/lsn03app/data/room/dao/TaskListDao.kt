@@ -8,9 +8,11 @@ abstract class TaskListDao {
 	@Insert
 	abstract  suspend fun addTaskList(taskListEntity: TaskListEntity)
 
-	@Delete
-	abstract suspend fun deleteTaskList(taskListEntity: TaskListEntity)
+	@Query("DELETE from taskList where id = :taskListId")
+	abstract suspend fun deleteTaskList(taskListId:Int)
 
+	@Query("DELETE from Task where taskListId = :taskListId")
+	abstract suspend fun deleteTasksByTaskListId(taskListId:Int)
 	@Update
 	abstract suspend fun updateTaskList(taskListEntity: TaskListEntity)
 

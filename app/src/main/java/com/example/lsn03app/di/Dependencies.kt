@@ -2,8 +2,8 @@ package com.example.lsn03app.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.lsn03app.data.TaskListRepository
-import com.example.lsn03app.data.TaskRepository
+import com.example.lsn03app.data.repositoryImpl.TaskListRepository
+import com.example.lsn03app.data.repositoryImpl.TaskRepository
 import com.example.lsn03app.data.room.MyDb
 
 object Dependencies {

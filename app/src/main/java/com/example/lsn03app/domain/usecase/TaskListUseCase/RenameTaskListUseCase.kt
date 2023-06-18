@@ -1,4 +1,4 @@
-package com.example.lsn03app.domain.usecase
+package com.example.lsn03app.domain.usecase.TaskListUseCase
 
 
 import com.example.lsn03app.domain.ITaskListRepository

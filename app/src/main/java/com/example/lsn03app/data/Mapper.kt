@@ -4,7 +4,6 @@ import com.example.lsn03app.data.room.entity.TaskEntity
 import com.example.lsn03app.data.room.entity.TaskListEntity
 import com.example.lsn03app.domain.models.Task
 import com.example.lsn03app.domain.models.TaskList
-import com.example.lsn03app.domain.usecase.GetAllTaskListUseCase
 
 class Mapper {
 	fun taskListEntityToTaskList(taskListEntity: TaskListEntity):TaskList{

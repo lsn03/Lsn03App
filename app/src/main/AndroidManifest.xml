@@ -18,13 +18,13 @@
 <!--            android:name=".ViewTaskActivity"-->
 <!--            android:exported="false" />-->
         <activity
-            android:name=".presentattion.AddTaskListActivity"
+            android:name=".presentattion.view.AddTaskListActivity"
             android:exported="false" />
         <activity
-            android:name=".presentattion.TaskActivity"
+            android:name=".presentattion.view.TaskActivity"
             android:exported="false" />
         <activity
-            android:name=".presentattion.MainActivity"
+            android:name=".presentattion.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

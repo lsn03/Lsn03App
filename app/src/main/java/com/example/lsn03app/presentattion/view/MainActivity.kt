@@ -1,4 +1,4 @@
-package com.example.lsn03app.presentattion
+package com.example.lsn03app.presentattion.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +7,8 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.example.lsn03app.databinding.ActivityMainBinding
 import com.example.lsn03app.di.Dependencies
-import com.example.lsn03app.domain.models.TaskList
+import com.example.lsn03app.presentattion.viewModel.MainViewModel
+import com.example.lsn03app.presentattion.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
@@ -16,8 +17,8 @@ class MainActivity : AppCompatActivity() {
 
 	lateinit var binding: ActivityMainBinding
 	lateinit var vpAdapter: ViewPagerAdapter
-	lateinit var vm: MainViewModel
-	lateinit var vmTaskList: TaskListViewModel
+	lateinit var mainViewModel: MainViewModel
+
 	var tabIndex : Int = 0
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,13 +26,11 @@ class MainActivity : AppCompatActivity() {
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
-		vm = ViewModelProvider(this)[MainViewModel::class.java]
-		vmTaskList = TaskListViewModel()
+		mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
 		Dependencies.taskRepository
 
-
-
-		vm.taskLists.observe(this){
+		mainViewModel.taskLists.observe(this){
 			vpAdapter = ViewPagerAdapter(this, it)
 			binding.viewPager.adapter = vpAdapter
 			TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, pos ->
@@ -48,20 +47,20 @@ class MainActivity : AppCompatActivity() {
 
 		binding.addTaskInTaskListButton.setOnClickListener {
 			startActivity(
-				vm.taskLists.value?.get(tabIndex)?.let {
-						it1 -> TaskActivity.getIntent(this, it1.id)
+				mainViewModel.taskLists.value?.get(tabIndex)?.let {
+						it1 ->
+					TaskActivity.getIntent(this, it1.id)
 				}
 			)
 		}
 
 		binding.removeTaskListButton.setOnClickListener {
-			val taskListId = vm.taskLists.value?.get(tabIndex)?.id
-			vm.taskLists.value?.toMutableList()?.removeAt(tabIndex)
-			taskListId?.let { it1 -> vm.removeTaskList(it1) }
-
+			val taskListId = mainViewModel.taskLists.value?.get(tabIndex)?.id
+			mainViewModel.taskLists.value?.toMutableList()?.removeAt(tabIndex)
+			taskListId?.let { it1 -> mainViewModel.removeTaskList(it1) }
 
 		}
-		vm.getAllTaskList()
+		mainViewModel.getAllTaskList()
 
 		binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener{
 			override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -69,8 +68,7 @@ class MainActivity : AppCompatActivity() {
 				if (tabIndex == 0){
 					binding.addTaskInTaskListButton.visibility = View.INVISIBLE
 					binding.removeTaskListButton.visibility = View.INVISIBLE
-					// если мы на фаворите то таски не можем добавлять
-					//
+
 				}else{
 					binding.addTaskInTaskListButton.visibility = View.VISIBLE
 					binding.removeTaskListButton.visibility = View.VISIBLE
@@ -90,6 +88,6 @@ class MainActivity : AppCompatActivity() {
 	}
 	override fun onResume() {
 		super.onResume()
-		vm.getAllTaskList()
+		mainViewModel.getAllTaskList()
 	}
 }
