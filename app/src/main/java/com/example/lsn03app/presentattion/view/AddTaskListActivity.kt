@@ -29,7 +29,6 @@ class AddTaskListActivity : AppCompatActivity() {
 
 			taskListViewModel.addTaskList(TaskList(name,isFavourite))
 
-
 			finish()
 		}
 
