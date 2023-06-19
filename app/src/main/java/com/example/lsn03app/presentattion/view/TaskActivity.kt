@@ -38,7 +38,7 @@ class TaskActivity : AppCompatActivity() {
 
 		if (mode == "EDIT") {
 			// Если в режиме редактирования, то кнопка добавления скрыта
-			binding.add.visibility = View.INVISIBLE
+			binding.add.visibility = View.GONE
 			binding.deleteTask.visibility = View.VISIBLE
 			binding.save.visibility = View.VISIBLE
 			binding.createDateContent.visibility = View.VISIBLE

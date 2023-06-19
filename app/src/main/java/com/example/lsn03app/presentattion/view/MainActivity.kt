@@ -53,25 +53,37 @@ class MainActivity : AppCompatActivity() {
 				}
 			)
 		}
+		binding.editTaskList.setOnClickListener {
+			startActivity(
+				mainViewModel.taskLists.value?.get(tabIndex)?.let {
+						it1 ->
+					AddTaskListActivity.getIntent(this, it1)
+				}
 
+			)
+		}
 		binding.removeTaskListButton.setOnClickListener {
 			val taskListId = mainViewModel.taskLists.value?.get(tabIndex)?.id
 			mainViewModel.taskLists.value?.toMutableList()?.removeAt(tabIndex)
 			taskListId?.let { it1 -> mainViewModel.removeTaskList(it1) }
 
 		}
+
+
 		mainViewModel.getAllTaskList()
 
 		binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener{
 			override fun onTabSelected(tab: TabLayout.Tab?) {
 				tabIndex = tab!!.position
 				if (tabIndex == 0){
-					binding.addTaskInTaskListButton.visibility = View.INVISIBLE
-					binding.removeTaskListButton.visibility = View.INVISIBLE
+					binding.addTaskInTaskListButton.visibility = View.GONE
+					binding.removeTaskListButton.visibility = View.GONE
+					binding.editTaskList.visibility = View.GONE
 
 				}else{
 					binding.addTaskInTaskListButton.visibility = View.VISIBLE
 					binding.removeTaskListButton.visibility = View.VISIBLE
+					binding.editTaskList.visibility = View.VISIBLE
 				}
 			}
 
