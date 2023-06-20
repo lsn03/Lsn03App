@@ -6,10 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.lsn03app.di.Dependencies
 import com.example.lsn03app.domain.models.Task
 import com.example.lsn03app.domain.usecase.*
-import com.example.lsn03app.domain.usecase.TaskUseCase.AddTaskUseCase
-import com.example.lsn03app.domain.usecase.TaskUseCase.DeleteTaskFromTaskListUseCase
-import com.example.lsn03app.domain.usecase.TaskUseCase.GetFavouriteTasksUseCase
-import com.example.lsn03app.domain.usecase.TaskUseCase.GetTasksFromTaskListUseCase
+import com.example.lsn03app.domain.usecase.TaskUseCase.*
 import kotlinx.coroutines.launch
 
 class TaskViewModel:ViewModel() {
@@ -19,7 +16,7 @@ class TaskViewModel:ViewModel() {
 	private val getTasksFromTaskListUseCase = GetTasksFromTaskListUseCase(taskRepository)
 	private val addTaskUseCase = AddTaskUseCase(taskRepository)
 	private val deleteTaskFromTaskListUseCase = DeleteTaskFromTaskListUseCase(taskRepository)
-
+	private val updateTaskUseCase = UpdateTaskUseCase(taskRepository)
 
 	fun getTasksFromTaskList(taskListId: Int) {
 		viewModelScope.launch {
@@ -43,7 +40,7 @@ class TaskViewModel:ViewModel() {
 	}
 	fun updateTask(task:Task){
 		viewModelScope.launch {
-
+			updateTaskUseCase.execute(task)
 		}
 	}
 
